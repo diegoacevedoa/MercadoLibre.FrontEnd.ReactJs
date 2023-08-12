@@ -8,9 +8,8 @@ export const PATH = {
 };
 
 export const API = {
-  SEARCH: "sites/MLA/search?q=:query",
-  RESULT: "/items/:id",
-  DETAIL: "/items/:id​/description",
+  SEARCH: "/items?q={query}",
+  DETAIL: "/items/{id}",
 };
 
 export const VIEWS = {
