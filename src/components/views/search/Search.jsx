@@ -1,9 +1,10 @@
 import { useCallback, useContext } from "react";
-import { useForm } from "../../hooks/useForm";
+import { useForm } from "../../../hooks/useForm";
 import { Container, Form, Col, Row, Stack, Image } from "react-bootstrap";
-import { Loading } from "../ui/loading";
-import { ProductContext } from "../../context/ProductContext";
-import InputButton from "../ui/input-button";
+import { Loading } from "../../ui/loading";
+import { ProductContext } from "../../../context/ProductContext";
+import InputButton from "../../ui/input-button";
+import "./Search.scss";
 
 const defaultFormValues = {
   search: "",
@@ -31,7 +32,7 @@ export const Search = () => {
     defaultFormValues,
     defaultValidationValues,
     validationMessages,
-    true
+    false
   );
 
   const handleSearch = useCallback(async (event) => {
@@ -48,28 +49,44 @@ export const Search = () => {
 
   return (
     <>
-      <Container className="p-0" fluid>
+      <Container className="p-0 mb-body-search" fluid>
         <Form id="formSearch" onSubmit={handleSearch} noValidate>
           <Row>
             <Col
-              lg={{ span: 10, offset: 2 }}
-              md={{ span: 10, offset: 2 }}
-              sm={{ span: 10, offset: 2 }}
-              xs={{ span: 10, offset: 2 }}
+              lg={{ span: 8, offset: 2 }}
+              md={{ span: 8, offset: 2 }}
+              sm={{ span: 8, offset: 2 }}
+              xs={{ span: 10, offset: 1 }}
             >
-              <Stack direction="horizontal" className="float-start">
-                <Image src="/mercadolibre.svg" width={53} height={36} />
+              <Stack direction="horizontal">
+                <Image
+                  src="/mercadolibre.svg"
+                  className="mb-img-mercado"
+                  width={53}
+                  height={36}
+                />
                 <InputButton
-                  className="mb-table-filter-input"
+                  id="search"
+                  className="mb-input-button"
                   onChange={handleInputChange}
                   placeHolder="Nunca dejes de buscar"
                   type="submit"
                   form="formSearch"
                   value={formValues.search}
+                  disabled={loading}
+                  required
+                  error={validationValues.search.message}
+                  isInvalid={validationValues.search.invalid}
                   index={1}
                 />
               </Stack>
             </Col>
+            <Col
+              lg={{ span: 2, offset: 0 }}
+              md={{ span: 2, offset: 0 }}
+              sm={{ span: 2, offset: 0 }}
+              xs={{ span: 1, offset: 0 }}
+            ></Col>
           </Row>
         </Form>
       </Container>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Search } from "../components/views/Search";
+import { Search } from "../components/views/search/Search";
 import { Result } from "../components/views/Result";
 import { Detail } from "../components/views/Detail";
 import { PATH } from "../helpers/constants";

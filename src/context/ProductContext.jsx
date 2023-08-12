@@ -1,11 +1,13 @@
 import React, { createContext, useCallback, useState } from "react";
 import { getAllProducts } from "../api/product/product";
+import Swal from "sweetalert2";
 
 export const ProductContext = createContext();
 
 export const ProductContextProvider = (props) => {
   const [loading, setLoading] = useState(false);
   const [allData, setAllData] = useState([]);
+  const [detail, setDetail] = useState(null);
 
   const handleGetAllProducts = useCallback(async (query) => {
     setLoading(true);
@@ -18,23 +20,17 @@ export const ProductContextProvider = (props) => {
         response.apiMessage + " " + (response.apiErrors ?? ""),
         "error"
       );
+      setAllData([]);
     } else {
-      if (response.apiData != null && response.apiData.length > 0) {
-        const newOptions = [
-          ...response.apiData.map(({ code, name, abbreviation }) => ({
-            value: code,
-            label: name,
-            abbreviation: abbreviation,
-          })),
-        ];
-
-        setAllData(newOptions);
+      if (response.apiData != null) {
+        setAllData(response.apiData);
       } else {
         Swal.fire(
           "Advertencia",
           "La consulta no retornó registros. ",
           "warning"
         );
+        setAllData([]);
       }
     }
 
@@ -52,23 +48,17 @@ export const ProductContextProvider = (props) => {
         response.apiMessage + " " + (response.apiErrors ?? ""),
         "error"
       );
+      setDetail(null);
     } else {
-      if (response.apiData != null && response.apiData.length > 0) {
-        const newOptions = [
-          ...response.apiData.map(({ code, name, abbreviation }) => ({
-            value: code,
-            label: name,
-            abbreviation: abbreviation,
-          })),
-        ];
-
-        setAllData(newOptions);
+      if (response.apiData != null) {
+        setDetail(response.apiData);
       } else {
         Swal.fire(
           "Advertencia",
           "La consulta no retornó registros. ",
           "warning"
         );
+        setDetail(null);
       }
     }
 
@@ -80,6 +70,7 @@ export const ProductContextProvider = (props) => {
       value={{
         loading,
         allData,
+        detail,
         handleGetAllProducts,
         handleGetOneProduct,
       }}

@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Search } from "react-bootstrap-icons";
-import { InputGroup, Button, FormControl } from "react-bootstrap";
+import { InputGroup, Button, FormControl, Form } from "react-bootstrap";
 
 import "./InputButton.scss";
 
@@ -16,13 +16,18 @@ const InputButton = ({
   className,
   type = "submit",
   form = "",
+  error,
+  required = false,
+  disabled = false,
+  isInvalid,
+  index = 0,
 }) => {
   const handleOnChange = useCallback((event) => {
-    onChange(event.target.value);
+    onChange({ value: event.target.value, id, event });
   });
 
   const searchIcon = useMemo(() => {
-    if (value !== "") {
+    if (value !== "" && icon) {
       return icon;
     }
 
@@ -34,12 +39,17 @@ const InputButton = ({
       <FormControl
         aria-describedby="button-addon"
         aria-label={placeHolder}
+        autoCorrect="off"
+        autoComplete="off"
         className="mb-input-control"
         id={id}
         onChange={handleOnChange}
         placeholder={placeHolder}
         type="text"
         value={value}
+        disabled={disabled}
+        isInvalid={isInvalid}
+        required={required}
       />
       <Button
         className="mb-input-btn"
@@ -47,9 +57,13 @@ const InputButton = ({
         type={type}
         onClick={onClick}
         form={form}
+        // disabled={disabled}
       >
         {searchIcon} {text}
       </Button>
+      <Form.Control.Feedback tabIndex={index} type="invalid">
+        {error}
+      </Form.Control.Feedback>
     </InputGroup>
   );
 };
