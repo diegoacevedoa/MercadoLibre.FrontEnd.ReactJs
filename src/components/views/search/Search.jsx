@@ -1,9 +1,11 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { useForm } from "../../../hooks/useForm";
 import { Container, Form, Col, Row, Stack, Image } from "react-bootstrap";
 import { Loading } from "../../ui/loading";
 import { ProductContext } from "../../../context/ProductContext";
 import InputButton from "../../ui/input-button";
+import { PATH } from "../../../helpers/constants";
+import { useNavigate } from "react-router-dom";
 import "./Search.scss";
 
 const defaultFormValues = {
@@ -19,7 +21,8 @@ const validationMessages = {
 };
 
 export const Search = () => {
-  const { loading, handleGetAllProducts } = useContext(ProductContext);
+  const { loading, allData, handleGetAllProducts } = useContext(ProductContext);
+  let navigate = useNavigate();
 
   const [
     formValues,
@@ -35,6 +38,12 @@ export const Search = () => {
     false
   );
 
+  useEffect(() => {
+    if (allData && allData.items && allData.items.length > 0) {
+      navigate(PATH.RESULT, { replace: true });
+    }
+  }, [allData]);
+
   const handleSearch = useCallback(async (event) => {
     event.preventDefault();
 
@@ -49,7 +58,7 @@ export const Search = () => {
 
   return (
     <>
-      <Container className="p-0 mb-body-search" fluid>
+      <Container className="mb-body-search" fluid>
         <Form id="formSearch" onSubmit={handleSearch} noValidate>
           <Row>
             <Col

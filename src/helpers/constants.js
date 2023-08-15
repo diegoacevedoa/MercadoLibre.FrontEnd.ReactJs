@@ -3,7 +3,6 @@ export const PATH = {
   ALL: "/*",
   SEARCH: "/",
   RESULT: "/items",
-  //   RESULT: "/items?search=",
   DETAIL: "/items/:id",
 };
 

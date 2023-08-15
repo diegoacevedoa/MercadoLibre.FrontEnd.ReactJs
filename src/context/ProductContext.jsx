@@ -6,7 +6,7 @@ export const ProductContext = createContext();
 
 export const ProductContextProvider = (props) => {
   const [loading, setLoading] = useState(false);
-  const [allData, setAllData] = useState([]);
+  const [allData, setAllData] = useState(null);
   const [detail, setDetail] = useState(null);
 
   const handleGetAllProducts = useCallback(async (query) => {
