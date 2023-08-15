@@ -1,0 +1,56 @@
+.mb-input-button {
+  align-content: center;
+  border-radius: 2px;
+  border: none;
+
+  &:hover,
+  &:focus {
+    border: 1px solid #0d6efd;
+    border-radius: 2px;
+  }
+
+  .mb-input-btn {
+    background-image: none;
+    background-color: #ebebeb;
+    color: #666;
+    border: none;
+    border-radius: 0 2px 2px 0;
+    padding: 0;
+    font-size: 22px;
+    width: 46px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-image: none;
+      background-color: #ebebeb;
+      color: #666;
+      border-radius: 2px;
+    }
+  }
+
+  .mb-input-control {
+    border-radius: 2px;
+    width: 80%;
+    font-size: 18px;
+    border: none;
+
+    &:hover,
+    &:focus {
+      border: none;
+      border-radius: 2px;
+      box-shadow: none;
+    }
+  }
+
+  .input-group-append {
+    height: 40px;
+    margin-top: -1px;
+  }
+}
