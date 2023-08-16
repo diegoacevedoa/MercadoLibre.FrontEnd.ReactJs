@@ -10,6 +10,7 @@
 
 .mb-body-detail-item {
   background: #ffffff;
+  border-radius: 2px;
   min-width: 900px;
   padding: 0;
 
@@ -26,7 +27,7 @@
   }
 
   & .descripcionTitle {
-    margin: 0 0 32px 0;
+    margin: 32px 0 32px 0;
     font-size: 28px;
     color: #333333;
   }
@@ -64,5 +65,9 @@
   & .btnComprar {
     margin: 0 32px 0 0;
     background: #3483fa;
+  }
+
+  & .img-sale {
+    margin: 32px 0 0 0;
   }
 }
