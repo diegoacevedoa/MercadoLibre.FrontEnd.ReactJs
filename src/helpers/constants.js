@@ -3,7 +3,9 @@ export const PATH = {
   ALL: "/*",
   SEARCH: "/",
   RESULT: "/items",
+  RESULTR: "/items?search={query}",
   DETAIL: "/items/:id",
+  DETAILR: "/items/{id}",
 };
 
 export const API = {

@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Card as BSCard, Col, Row, Stack } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { PATH } from "../../../helpers/constants";
 import "./Result.scss";
 
 export const CardItem = ({ data }) => {
+  let navigate = useNavigate();
+
+  const handleDetail = useCallback(async (event) => {
+    event.preventDefault();
+
+    navigate(PATH.DETAILR.replace("{id}", data.id), { replace: false });
+  });
+
   return (
     <BSCard className="mb-card">
       <BSCard.Body>
@@ -10,12 +20,13 @@ export const CardItem = ({ data }) => {
           <Col lg={8} md={9} sm={9} xs={9}>
             <Stack direction="horizontal">
               <BSCard.Img
+                onClick={handleDetail}
                 className="card-img-sale"
                 src={data.picture}
               ></BSCard.Img>
               <Stack direction="vertical">
                 <Stack direction="horizontal" className="card-text-price">
-                  <BSCard.Text>{`${data.price.currency} ${data.price.decimals}`}</BSCard.Text>
+                  <BSCard.Text>{`${data.price.currency} ${data.price.value}`}</BSCard.Text>
                   {data.free_shipping && (
                     <BSCard.Img
                       className="card-img-shipping"
@@ -23,7 +34,7 @@ export const CardItem = ({ data }) => {
                     ></BSCard.Img>
                   )}
                 </Stack>
-                <BSCard.Text className=".card-text-name">
+                <BSCard.Text onClick={handleDetail} className="card-text-name">
                   {data.title}
                 </BSCard.Text>
               </Stack>

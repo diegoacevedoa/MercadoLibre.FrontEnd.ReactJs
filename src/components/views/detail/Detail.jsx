@@ -1,25 +1,34 @@
 import React, { useContext, useEffect, useMemo } from "react";
+import { useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
-import { CardItem } from "./CardItem";
 import { ProductContext } from "../../../context/ProductContext";
-import "./Result.scss";
 import { Loading } from "../../ui/loading";
-import { useSearchParams } from "react-router-dom";
+import { DetailItem } from "./DetailItem";
+import "./Detail.scss";
 
-export const Result = () => {
-  const [queryParameters] = useSearchParams();
-  const { loading, allData, handleGetAllProducts } = useContext(ProductContext);
-  const searchParameter = queryParameters.get("search");
+export const Detail = () => {
+  const { loading, detail, handleGetOneProduct } = useContext(ProductContext);
+  const { id } = useParams();
 
   useEffect(() => {
-    if (searchParameter != undefined && searchParameter != "") {
-      handleGetAllProducts(searchParameter);
-    }
-  }, [searchParameter]);
+    handleGetOneProduct(id);
+  }, [id]);
 
-  const getResults = useMemo(() => {
-    return (
-      <Container className="mb-body-result" fluid>
+  const getBreadcrumb = useMemo(() => {
+    if (detail != null) {
+      return <span className="breadcrumb">{detail?.item.category}</span>;
+    }
+  }, [detail]);
+
+  const getDetailItem = useMemo(() => {
+    if (detail != null) {
+      return <DetailItem data={detail} />;
+    }
+  }, [detail]);
+
+  return (
+    <>
+      <Container className="mb-body-detail" fluid>
         <Row>
           <Col
             lg={{ span: 8, offset: 2 }}
@@ -27,9 +36,7 @@ export const Result = () => {
             sm={{ span: 10, offset: 1 }}
             xs={{ span: 10, offset: 1 }}
           >
-            <span className="breadcrumb">
-              {allData?.categories.toString().replaceAll(",", " > ")}
-            </span>
+            {getBreadcrumb}
           </Col>
           <Col
             lg={{ span: 2, offset: 0 }}
@@ -45,9 +52,7 @@ export const Result = () => {
             sm={{ span: 10, offset: 1 }}
             xs={{ span: 10, offset: 1 }}
           >
-            {allData?.items?.map((item, idx) => (
-              <CardItem key={item.id} data={item} />
-            ))}
+            {getDetailItem}
           </Col>
           <Col
             lg={{ span: 2, offset: 0 }}
@@ -57,12 +62,6 @@ export const Result = () => {
           ></Col>
         </Row>
       </Container>
-    );
-  }, [allData]);
-
-  return (
-    <>
-      {getResults}
       <Loading show={loading} />
     </>
   );
