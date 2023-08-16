@@ -1,9 +1,10 @@
 .mb-body-result {
-  min-width: 700px;
+  min-width: 750px;
 
   & .breadcrumb {
     margin: 16px 0 16px 0;
     font-size: 14px;
+    color: #999999;
   }
 }
 
@@ -81,16 +82,19 @@
   & .card-text-price {
     margin-bottom: 32px;
     font-size: 24px;
+    color: #333333;
   }
 
   & .card-text-name {
     font-size: 18px;
+    color: #666666;
   }
 
   & .card-text-state {
     text-align: center;
     font-size: 12px;
     padding-top: 10px;
+    color: #999999;
   }
 
   & .card-body-row {
