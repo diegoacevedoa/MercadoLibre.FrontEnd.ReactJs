@@ -12,7 +12,7 @@ export const DetailItem = ({ data }) => {
               <Row>
                 <Col>
                   <Image
-                    className="rounded mx-auto d-block"
+                    className="rounded mx-auto d-block img-sale"
                     src={data.item.picture}
                   />
                 </Col>
@@ -23,13 +23,7 @@ export const DetailItem = ({ data }) => {
                     <span className="descripcionTitle">
                       Descripción del producto
                     </span>
-                    <span className="descripcion">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Architecto, ipsam dignissimos? Quibusdam expedita
-                      molestias laboriosam quaerat veniam a nemo, quisquam
-                      itaque aspernatur quo cum porro qui consequatur eos
-                      voluptas inventore.
-                    </span>
+                    <span className="descripcion">{data.item.description}</span>
                   </Stack>
                 </Col>
               </Row>

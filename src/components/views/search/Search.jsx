@@ -42,11 +42,11 @@ export const Search = () => {
 
     triggerValidation();
 
-    if (!valid || formValues.search === "") {
+    if (!valid || formValues.searchText === "") {
       return;
     }
 
-    navigate(PATH.RESULTR.replace("{query}", formValues.search), {
+    navigate(PATH.RESULTR.replace("{query}", formValues.searchText), {
       replace: true,
     });
   });
@@ -69,7 +69,7 @@ export const Search = () => {
                 height={36}
               />
               <InputButton
-                id="search"
+                id="searchText"
                 className="mb-input-button"
                 onChange={handleInputChange}
                 placeHolder="Nunca dejes de buscar"
