@@ -30,7 +30,7 @@ export const Search = () => {
     reset,
   ] = useForm(
     {
-      searchText: searchParameter,
+      searchText: searchParameter ?? "",
     },
     defaultValidationValues,
     validationMessages,

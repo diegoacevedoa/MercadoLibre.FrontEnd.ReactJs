@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useState } from "react";
-import { getAllProducts } from "../api/product/product";
+import { getAllProducts, getOneProduct } from "../api/product/product";
 import Swal from "sweetalert2";
 
 export const ProductContext = createContext();
