@@ -5,11 +5,14 @@ import { ProductContext } from "../../../context/ProductContext";
 import "./Result.scss";
 import { Loading } from "../../ui/loading";
 import { useSearchParams } from "react-router-dom";
+import { useSEO } from "../../../hooks/useSEO";
 
 export const Result = () => {
   const [queryParameters] = useSearchParams();
   const { loading, allData, handleGetAllProducts } = useContext(ProductContext);
   const searchParameter = queryParameters.get("search");
+
+  useSEO({ title: "Result", description: "Detail of Result." });
 
   useEffect(() => {
     if (searchParameter != undefined && searchParameter != "") {

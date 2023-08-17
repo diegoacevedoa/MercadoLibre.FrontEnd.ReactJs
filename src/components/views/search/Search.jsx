@@ -5,6 +5,8 @@ import { ProductContext } from "../../../context/ProductContext";
 import InputButton from "../../ui/input-button";
 import { PATH } from "../../../helpers/constants";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSEO } from "../../../hooks/useSEO";
+
 import "./Search.scss";
 
 const defaultValidationValues = {
@@ -20,6 +22,8 @@ export const Search = () => {
   let navigate = useNavigate();
   const [queryParameters] = useSearchParams();
   const searchParameter = queryParameters.get("search");
+
+  useSEO({ title: "Search", description: "Detail of Search." });
 
   const [
     formValues,
