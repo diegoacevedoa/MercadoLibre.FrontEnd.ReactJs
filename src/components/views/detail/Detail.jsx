@@ -5,10 +5,13 @@ import { ProductContext } from "../../../context/ProductContext";
 import { Loading } from "../../ui/loading";
 import { DetailItem } from "./DetailItem";
 import "./Detail.scss";
+import { useSEO } from "../../../hooks/useSEO";
 
 export const Detail = () => {
   const { loading, detail, handleGetOneProduct } = useContext(ProductContext);
   const { id } = useParams();
+
+  useSEO({ title: "Detail", description: "Detail of Detail." });
 
   useEffect(() => {
     handleGetOneProduct(id);
