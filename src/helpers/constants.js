@@ -4,13 +4,13 @@ export const PATH = {
   SEARCH: "/",
   RESULT: "/items",
   RESULTR: "/items?search={query}",
-  DETAIL: "/items/:id",
-  DETAILR: "/items/{id}",
+  DETAIL: "/item/:id",
+  DETAILR: "/item/{id}",
 };
 
 export const API = {
-  SEARCH: "/items?q={query}",
-  DETAIL: "/items/{id}",
+  SEARCH: "items?q={query}",
+  DETAIL: "item/{id}",
 };
 
 export const VIEWS = {
